@@ -20,8 +20,9 @@ public class Character : MonoBehaviour
 	private void Start()
 	{
 		isActive = true;
-		gameObject.name = name;
 		GenerateStats();
+		gameObject.name = name;
+		
 	}
 
 	public bool IsActive
@@ -92,6 +93,7 @@ public class Character : MonoBehaviour
 			stamina = UnityEngine.Random.Range(3, 18);
 			health = stamina * healthModifier;
 			movement = 6;
+			name = Names.GenerateName();
 		}
 	}
 }

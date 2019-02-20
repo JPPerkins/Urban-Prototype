@@ -18,7 +18,7 @@ public class GameDirector : MonoBehaviour
 	[SerializeField] State state = State.Start_Encounter;
 	[SerializeField] Player[] currentPlayers = null;
 	[SerializeField] List<Character> currentCharacters = null;
-	[SerializeField] Text playerText, turnText;
+	[SerializeField] Text playerText, characterText, turnText;
 	[SerializeField] Player activePlayer = null;
 	[SerializeField] Character activeCharacter = null;
 	[SerializeField] int turnsTaken;
@@ -91,6 +91,7 @@ public class GameDirector : MonoBehaviour
 			state = State.End_Round;
 			ProcessState();
 		}
+		activePlayer = activeCharacter.GetComponentInParent<Player>();
 		validMoveParent.SelectCharacter(activeCharacter);
 		cameraRaycaster.SetCharacter(activeCharacter);
 		selectedCharacter.transform.position = activeCharacter.transform.position;
@@ -139,11 +140,13 @@ public class GameDirector : MonoBehaviour
 
 	private void UpdateInterface()
 	{
-		playerText.text = activeCharacter.Name;
 		turnText.text = "Round: " + currentRound.ToString();
+
 		if (activeCharacter != null)
 		{
 			selectedCharacterStats.UpdateStatUI(activeCharacter);
+			playerText.text = activePlayer.Name;
+			characterText.text = activeCharacter.Name;
 		}
 		else
 		{

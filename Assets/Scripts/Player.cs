@@ -9,6 +9,10 @@ public class Player : MonoBehaviour
 
 	private void Start()
 	{
+		if (name == "default")
+		{
+			name = Names.GenerateName();
+		}
 		playerForce = GetComponentsInChildren<Character>();
 		gameObject.name = name;
 	}
@@ -18,8 +22,6 @@ public class Player : MonoBehaviour
 		get { return name; }
 	}
 
-
-	
 	public Character[] PlayerForce
 	{
 		get { return playerForce;  }
