@@ -16,7 +16,6 @@ public class GenerateValidMoves : MonoBehaviour
 	public void SelectCharacter(Character character)
 	{
 		Vector3 origin = character.transform.position;
-		
 
 		for (int x = -character.Movement; x <= character.Movement; x++)
 		{

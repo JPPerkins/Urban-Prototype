@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[SelectionBase]
 public class Character : MonoBehaviour
 {
 	[SerializeField] string name = "default";
@@ -16,6 +17,7 @@ public class Character : MonoBehaviour
 	[SerializeField] float stamina = 0f;
 	[SerializeField] int movement = 0;
 	[SerializeField] Weapon currentWeapon = null;
+	[SerializeField] float size = 1f;
 
 	private void Start()
 	{
@@ -84,7 +86,7 @@ public class Character : MonoBehaviour
 
 	private void GenerateStats()
 	{
-		if (dexterity == 0 || strength == 0 || intelligence == 0 || willpower == 0 || stamina == 0)
+		if (name == "default")
 		{
 			dexterity = UnityEngine.Random.Range(3, 18);
 			strength = UnityEngine.Random.Range(3, 18);
@@ -94,6 +96,7 @@ public class Character : MonoBehaviour
 			health = stamina * healthModifier;
 			movement = 6;
 			name = Names.GenerateName();
+			size = 1f;
 		}
 	}
 }
