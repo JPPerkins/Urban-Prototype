@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 832463513542247310}
   - component: {fileID: 832463513542247309}
   - component: {fileID: 8631221756816743588}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: 0,0 Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,8 +118,8 @@ GameObject:
   m_Component:
   - component: {fileID: 832463513984535251}
   - component: {fileID: 832463513984535244}
-  m_Layer: 9
-  m_Name: Terrain
+  m_Layer: 10
+  m_Name: 0,0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

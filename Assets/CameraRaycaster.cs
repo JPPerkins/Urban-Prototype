@@ -11,6 +11,7 @@ public class CameraRaycaster : MonoBehaviour
 	//[SerializeField] int yOffset = 1;
 	//[SerializeField] Vector3 clickPosition;
 	// Update is called once per frame
+
 	void Update()
 	{
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

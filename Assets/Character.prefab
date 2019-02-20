@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 246379097058821393}
   - component: {fileID: 5674901556476701078}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,6 +47,11 @@ MonoBehaviour:
   name: default
   isActive: 0
   dexterity: 0
+  strength: 0
+  intelligence: 0
+  willpower: 0
+  stamina: 0
+  movement: 0
 --- !u!1 &5236432127299985935
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,7 +65,7 @@ GameObject:
   - component: {fileID: 7096982118209580132}
   - component: {fileID: 6689531825455332461}
   - component: {fileID: 9169338617906959503}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

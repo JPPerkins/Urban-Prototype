@@ -19,7 +19,20 @@ public class MouseHover : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		//	Debug.Log("Hello Inside of MouseHover");
+		if (other.gameObject.layer == 11)
+		{
+			isValidMove = true;
+			isColliding = false;
+		}
+		else
+		{
+			isValidMove = false;
+			isColliding = true;
+		}
+	}
+
+	void OnTriggerStay(Collider other)
+	{
 		if (other.gameObject.layer == 11)
 		{
 			isValidMove = true;

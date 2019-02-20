@@ -5,17 +5,18 @@ using UnityEngine;
 public class GenerateValidMoves : MonoBehaviour
 {
 	[SerializeField] GameObject validMovement = null;
-	[SerializeField] List<GameObject> validMovementList = null;
+	[SerializeField] Dictionary<Vector2, GameObject> validMovementPairs = null;
+	[SerializeField] int validMoveSize = 0;
 
 	public void Start()
 	{
-		validMovementList = new List<GameObject>();
+		validMovementPairs = new Dictionary<Vector2, GameObject>();
 	}
 
 	public void SelectCharacter(Character character)
 	{
 		Vector3 origin = character.transform.position;
-		Debug.Log(character.Movement);
+		
 
 		for (int x = -character.Movement; x <= character.Movement; x++)
 		{
@@ -23,20 +24,25 @@ public class GenerateValidMoves : MonoBehaviour
 			{
 				if ((Mathf.Abs(x) + Mathf.Abs(z)) <= character.Movement && !(x == 0 && z == 0))
 				{
-					Vector3 newValidPosition = new Vector3(origin.x + x, origin.y, origin.z + z);
-					GameObject newValidMovement = Instantiate(validMovement, newValidPosition, Quaternion.identity, gameObject.transform);
-					newValidMovement.name = "New Valid Point: (" + x + ", " + z + ")";
-					validMovementList.Add(newValidMovement);
+					if (!validMovementPairs.ContainsKey(new Vector2(x,z)))
+					{
+						Vector3 newValidPosition = new Vector3(origin.x + x, origin.y, origin.z + z);
+						GameObject newValidMovement = Instantiate(validMovement, newValidPosition, Quaternion.identity, gameObject.transform);
+						newValidMovement.name = "New Valid Point: (" + x + ", " + z + ")";
+						validMovementPairs.Add(new Vector2(x, z), newValidMovement);
+					}
 				}
 			}
 		}
+		validMoveSize = validMovementPairs.Count;
 	}
 
 	public void DeselectCharacter()
 	{
-		foreach (GameObject deleteThis in validMovementList)
+		foreach (KeyValuePair<Vector2, GameObject> deleteThis in validMovementPairs)
 		{
-			Destroy(deleteThis);
+			Destroy(deleteThis.Value);
 		}
+		validMovementPairs.Clear();
 	}
 }
