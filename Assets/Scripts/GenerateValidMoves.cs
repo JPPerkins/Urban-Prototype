@@ -28,6 +28,7 @@ public class GenerateValidMoves : MonoBehaviour
 					{
 						Vector3 newValidPosition = new Vector3(origin.x + x, origin.y, origin.z + z);
 						GameObject newValidMovement = Instantiate(validMovement, newValidPosition, Quaternion.identity, gameObject.transform);
+						newValidMovement.name = x + ", " + z;
 						validMovementPairs.Add(new Vector2(x, z), newValidMovement);
 					}
 				}
@@ -43,5 +44,6 @@ public class GenerateValidMoves : MonoBehaviour
 			Destroy(deleteThis.Value);
 		}
 		validMovementPairs.Clear();
+		validMoveSize = 0;
 	}
 }

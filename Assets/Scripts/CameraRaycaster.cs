@@ -8,6 +8,7 @@ public class CameraRaycaster : MonoBehaviour
 	[SerializeField] int[] layerPriorities;
 	[SerializeField] GameObject mouseHover;
 	[SerializeField] GameObject mouseClick;
+	[SerializeField] Character activeCharacter;
 
 	void Update()
 	{
@@ -18,6 +19,7 @@ public class CameraRaycaster : MonoBehaviour
 		if (priorityHit.HasValue)
 		{
 			Vector3 gridPosition = FindGridPosition(priorityHit);
+			GameObject clickedObject = priorityHit.Value.collider.gameObject;
 
 			mouseHover.transform.position = gridPosition;
 			mouseHover.SetActive(true);
@@ -32,10 +34,17 @@ public class CameraRaycaster : MonoBehaviour
 				gameDirector.moveCharacter(gridPosition);
 				gameDirector.EndTurn();
 			}
-			else if (Input.GetMouseButtonDown(0) && spaceIsUsed)
+			else if (Input.GetMouseButtonDown(0) && spaceIsUsed && clickedObject.layer == 12)
 			{
 				mouseClick.transform.position = gridPosition;
 				mouseClick.SetActive(true);
+				//Debug.Log(activeCharacter.Attack);
+				var tempCharacter = clickedObject.GetComponentInParent<Character>();
+				//Debug.Log(clickedObject.GetComponentInParent<Character>().Name);
+				if (tempCharacter.Name != activeCharacter.Name)
+				{
+					tempCharacter.DealDamage(activeCharacter.Attack);
+				}
 			}
 		}
 		else
@@ -46,6 +55,11 @@ public class CameraRaycaster : MonoBehaviour
 			}
 			mouseHover.SetActive(false);
 		}
+	}
+
+	public void SetCharacter(Character character)
+	{
+		activeCharacter = character;
 	}
 
 	private RaycastHit? FindTopPriorityHit(RaycastHit[] raycastHits)

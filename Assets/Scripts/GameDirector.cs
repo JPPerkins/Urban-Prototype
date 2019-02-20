@@ -27,11 +27,13 @@ public class GameDirector : MonoBehaviour
 	[SerializeField] GameObject selectedCharacter = null;
 	[SerializeField] StatUI selectedCharacterStats = null;
 	[SerializeField] GenerateValidMoves validMoveParent = null;
+	[SerializeField] CameraRaycaster cameraRaycaster = null;
 
 	// Start is called before the first frame update
 	void Start()
     {
 		currentPlayers = FindObjectsOfType<Player>();
+		cameraRaycaster = FindObjectOfType<CameraRaycaster>();
 		ProcessState();
 	}
 
@@ -90,6 +92,7 @@ public class GameDirector : MonoBehaviour
 			ProcessState();
 		}
 		validMoveParent.SelectCharacter(activeCharacter);
+		cameraRaycaster.SetCharacter(activeCharacter);
 		selectedCharacter.transform.position = activeCharacter.transform.position;
 		selectedCharacter.SetActive(true);
 	}
@@ -140,7 +143,7 @@ public class GameDirector : MonoBehaviour
 		turnText.text = "Round: " + currentRound.ToString();
 		if (activeCharacter != null)
 		{
-			selectedCharacterStats.UpdateStatUI(activeCharacter.Dexterity, activeCharacter.Strength, activeCharacter.Intelligence, activeCharacter.Willpower, activeCharacter.Stamina);
+			selectedCharacterStats.UpdateStatUI(activeCharacter);
 		}
 		else
 		{
@@ -150,7 +153,7 @@ public class GameDirector : MonoBehaviour
 
 	private void ProcessPlayerInput()
 	{
-		Debug.Log("Character " + activeCharacter.Name + " Ended Turn");
+		//Debug.Log("Character " + activeCharacter.Name + " Ended Turn");
 		turnsTaken++;
 	}
 
