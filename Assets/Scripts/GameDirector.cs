@@ -74,7 +74,6 @@ public class GameDirector : MonoBehaviour
 
 	private void StartRound()
 	{
-		Debug.Log("Doing Round Setup for Round: " + currentRound); // getting active characters
 		currentCharacters.Clear();
 		GetActiveCharacters();
 		state = State.Character_Turn;
@@ -93,20 +92,10 @@ public class GameDirector : MonoBehaviour
 		validMoveParent.SelectCharacter(activeCharacter);
 		selectedCharacter.transform.position = activeCharacter.transform.position;
 		selectedCharacter.SetActive(true);
-		//Debug.Log("Player " + activeCharacter.Name + " Started Turn");
 	}
 
 	private void EndRound()
 	{
-		//Debug.Log("Ending Round: " + currentRound);
-		/*if (currentRound >= maxRounds)
-		{
-			state = State.End_Encounter;
-		}
-		else
-		{		
-			state = State.Start_Round;
-		}*/
 		state = State.Start_Round;
 		currentRound++;
 		ProcessState();

@@ -8,9 +8,6 @@ public class CameraRaycaster : MonoBehaviour
 	[SerializeField] int[] layerPriorities;
 	[SerializeField] GameObject mouseHover;
 	[SerializeField] GameObject mouseClick;
-	//[SerializeField] int yOffset = 1;
-	//[SerializeField] Vector3 clickPosition;
-	// Update is called once per frame
 
 	void Update()
 	{
@@ -39,7 +36,6 @@ public class CameraRaycaster : MonoBehaviour
 			{
 				mouseClick.transform.position = gridPosition;
 				mouseClick.SetActive(true);
-				Debug.Log("Space is Used");
 			}
 		}
 		else

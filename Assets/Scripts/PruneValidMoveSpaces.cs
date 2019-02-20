@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PruneValidMoveSpaces : MonoBehaviour
 {
+
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 10 || other.gameObject.layer == 12)
 		{
-			Debug.Log(other.gameObject + " is not valid");
-			//other.gameObject.transform.parent.gameObject;
+			Destroy(gameObject.transform.parent.gameObject);
+		}
+		else if (other.gameObject.layer == 13)	// TODO make better, delay, something to improve this.
+		{
 			Destroy(gameObject.transform.parent.gameObject);
 		}
 	}

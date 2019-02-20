@@ -17,6 +17,7 @@ public class Character : MonoBehaviour
 	{
 		isActive = true;
 		gameObject.name = name;
+		generateStats();
 	}
 
 	public bool IsActive
@@ -52,5 +53,22 @@ public class Character : MonoBehaviour
 	public int Movement
 	{
 		get { return movement; }
+	}
+	public float Attack
+	{
+		get { return strength; }
+	}
+
+	private void generateStats()
+	{
+		if (dexterity == 0 || strength == 0 || intelligence == 0 || willpower == 0 || stamina == 0)
+		{
+			dexterity = Random.Range(3, 18);
+			strength = Random.Range(3, 18);
+			intelligence = Random.Range(3, 18);
+			willpower = Random.Range(3, 18);
+			stamina = Random.Range(3, 18);
+			movement = 6;
+		}
 	}
 }

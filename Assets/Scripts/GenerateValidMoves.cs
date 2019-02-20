@@ -28,7 +28,6 @@ public class GenerateValidMoves : MonoBehaviour
 					{
 						Vector3 newValidPosition = new Vector3(origin.x + x, origin.y, origin.z + z);
 						GameObject newValidMovement = Instantiate(validMovement, newValidPosition, Quaternion.identity, gameObject.transform);
-						newValidMovement.name = "New Valid Point: (" + x + ", " + z + ")";
 						validMovementPairs.Add(new Vector2(x, z), newValidMovement);
 					}
 				}
